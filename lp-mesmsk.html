@@ -1246,6 +1246,7 @@ a   { color: inherit; text-decoration: none; }
   outline: none;
   transition: border-color .15s, background .15s, box-shadow .15s;
   -webkit-appearance: none;
+  appearance: none;
 }
 
 .form-group input:focus {
@@ -1309,10 +1310,10 @@ a   { color: inherit; text-decoration: none; }
   .navbar { padding: 0 24px; }
   .navbar__tag { display: none; }
 
-  /* Hero mobile */
+  /* Hero mobile — texto em cima, expert centralizado embaixo */
   .hero {
-    background-size: auto 50% !important;
-    background-position: 80% bottom !important;
+    background-size: 130% auto !important;
+    background-position: 52% 108% !important;
     min-height: unset;
     padding-bottom: 0;
   }
@@ -1320,35 +1321,36 @@ a   { color: inherit; text-decoration: none; }
     background: linear-gradient(
       to bottom,
       #FFFFFF        0%,
-      #FFFFFF        50%,
-      rgba(255,255,255,.92) 65%,
-      rgba(255,255,255,.55) 80%,
-      rgba(255,255,255,.1)  92%,
-      transparent    100%
+      #FFFFFF        44%,
+      rgba(255,255,255,.9) 56%,
+      rgba(255,255,255,.4) 70%,
+      transparent    82%
     );
   }
-  .hero__grid { padding: 0 24px; }
+  .hero__grid { padding: 0 20px; }
   .hero__content {
-    padding: 48px 0 240px;
+    padding: 40px 0 300px;
     max-width: 100%;
     padding-right: 0;
+    text-align: center;
   }
   .hero__header-row {
+    flex-direction: column;
+    align-items: center;
     gap: 10px;
     margin-bottom: 20px;
-    align-items: flex-start;
-    flex-direction: column;
   }
   .hero__badge {
     font-size: 9px;
-    align-self: flex-start;
+    align-self: center;
     margin-bottom: 0;
   }
   .hero__promise { font-size: 36px; max-width: 100%; }
   .hero__reinforcement { font-size: 16px; max-width: 100%; }
   .hero__attention { width: 100%; }
-  .hero__cta-row { flex-direction: column; align-items: stretch; }
-  .hero__cta-row .btn { width: 100%; justify-content: center; }
+  .hero__cta-wrap { flex-direction: column; align-items: stretch; }
+  .hero__cta { width: 100%; justify-content: center; }
+  .hero__cta-sub { text-align: center; }
 
   .logos-row { grid-template-columns: repeat(2, 1fr); }
 
@@ -1372,9 +1374,10 @@ a   { color: inherit; text-decoration: none; }
 
 @media (max-width: 480px) {
   .hero {
-    background-size: auto 42% !important;
+    background-size: 150% auto !important;
+    background-position: 52% 106% !important;
   }
-  .hero__content { padding-bottom: 200px; }
+  .hero__content { padding-bottom: 260px; }
   .hero__event-main { font-size: 64px; }
   .hero__promise { font-size: 30px; }
   .logos-row { gap: 8px; }
