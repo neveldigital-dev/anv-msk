@@ -1312,8 +1312,8 @@ a   { color: inherit; text-decoration: none; }
 
   /* Hero mobile — texto em cima, expert centralizado embaixo */
   .hero {
-    background-size: 130% auto !important;
-    background-position: 52% 108% !important;
+    background-size: 145% auto !important;
+    background-position: 68% 110% !important;
     min-height: unset;
     padding-bottom: 0;
   }
@@ -1321,15 +1321,15 @@ a   { color: inherit; text-decoration: none; }
     background: linear-gradient(
       to bottom,
       #FFFFFF        0%,
-      #FFFFFF        44%,
-      rgba(255,255,255,.9) 56%,
-      rgba(255,255,255,.4) 70%,
-      transparent    82%
+      #FFFFFF        42%,
+      rgba(255,255,255,.9) 54%,
+      rgba(255,255,255,.4) 68%,
+      transparent    80%
     );
   }
   .hero__grid { padding: 0 20px; }
   .hero__content {
-    padding: 40px 0 300px;
+    padding: 32px 0 280px;
     max-width: 100%;
     padding-right: 0;
     text-align: center;
@@ -1337,18 +1337,22 @@ a   { color: inherit; text-decoration: none; }
   .hero__header-row {
     flex-direction: column;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
+    gap: 6px;
+    margin-bottom: 14px;
   }
+  /* Logo menor no mobile */
+  .hero__event-sup { font-size: 18px; padding: 3px 10px 4px; }
+  .hero__event-main { font-size: 56px !important; }
   .hero__badge {
     font-size: 9px;
     align-self: center;
     margin-bottom: 0;
   }
-  .hero__promise { font-size: 36px; max-width: 100%; }
-  .hero__reinforcement { font-size: 16px; max-width: 100%; }
-  .hero__attention { width: 100%; }
-  .hero__cta-wrap { flex-direction: column; align-items: stretch; }
+  /* Headline maior, espaçamentos menores */
+  .hero__promise { font-size: 40px; max-width: 100%; margin-bottom: 10px; }
+  .hero__reinforcement { font-size: 15px; max-width: 100%; margin-bottom: 20px; }
+  .hero__attention { width: 100%; margin-bottom: 20px; }
+  .hero__cta-wrap { flex-direction: column; align-items: stretch; gap: 10px; }
   .hero__cta { width: 100%; justify-content: center; }
   .hero__cta-sub { text-align: center; }
 
@@ -1363,6 +1367,8 @@ a   { color: inherit; text-decoration: none; }
   .fraud-card__inner { grid-template-columns: 1fr; gap: 32px; }
   .fraud-phone { min-width: unset; }
   .fraud-phone__num { font-size: 17px; }
+  .fraud-card__title br { display: none; }
+  .fraud-card__title { white-space: nowrap; font-size: clamp(28px, 7vw, 40px); }
 
   .container { padding: 0 24px; }
   .footer { padding: 32px 24px; }
@@ -1374,12 +1380,11 @@ a   { color: inherit; text-decoration: none; }
 
 @media (max-width: 480px) {
   .hero {
-    background-size: 150% auto !important;
-    background-position: 52% 106% !important;
+    background-size: 160% auto !important;
+    background-position: 68% 108% !important;
   }
-  .hero__content { padding-bottom: 260px; }
-  .hero__event-main { font-size: 64px; }
-  .hero__promise { font-size: 30px; }
+  .hero__content { padding-bottom: 240px; }
+  .hero__promise { font-size: 34px; }
   .logos-row { gap: 8px; }
   .accordion-body { padding-left: 28px; }
   .fraud-card__title { font-size: 36px; }
