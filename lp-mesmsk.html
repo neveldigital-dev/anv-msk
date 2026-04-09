@@ -1,0 +1,1903 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mês do MSK 2026 — Dr. Mateus Queiroz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Barlow+Condensed:ital,wght@0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
+<style>
+
+/* ─────────────────────────────────────────────────
+   BRAND TOKENS
+───────────────────────────────────────────────── */
+:root {
+  --primary:        #1CC9A4;
+  --primary-dark:   #14A888;
+  --primary-deeper: #0D8C70;
+  --primary-light:  #5DDFC4;
+  --primary-muted:  #E0F7F2;
+
+  --bg:             #F0F0F0;
+  --bg-card:        #FFFFFF;
+  --bg-elevated:    #F8F8F8;
+  --border:         #E0E0E0;
+  --border-light:   #EBEBEB;
+
+  --text-primary:   #111111;
+  --text-secondary: #444444;
+  --text-tertiary:  #888888;
+
+  --font-display:   'Barlow Condensed', sans-serif;
+  --font-body:      'Inter', sans-serif;
+
+  --shadow-card:    0 2px 12px rgba(0,0,0,.07);
+  --shadow-float:   0 24px 64px rgba(0,0,0,.2);
+  --shadow-btn:     0 4px 20px rgba(28,201,164,.45);
+}
+
+/* ─────────────────────────────────────────────────
+   RESET & BASE
+───────────────────────────────────────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; display: block; }
+a   { color: inherit; text-decoration: none; }
+
+/* ─────────────────────────────────────────────────
+   KEYFRAMES
+───────────────────────────────────────────────── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: .3; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(.94) translateY(16px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 4px 18px rgba(28,201,164,.5),
+                0 0 0 0 rgba(28,201,164,.0);
+  }
+  50% {
+    box-shadow: 0 6px 40px rgba(28,201,164,.85),
+                0 0 0 8px rgba(28,201,164,.14);
+  }
+}
+
+@keyframes btnShine {
+  0%   { left: -120%; opacity: 0; }
+  10%  { opacity: 1; }
+  50%  { left: 160%; opacity: 1; }
+  51%  { opacity: 0; }
+  100% { left: 160%; opacity: 0; }
+}
+
+@keyframes rotateBorder {
+  from { --angle: 0deg; }
+  to   { --angle: 360deg; }
+}
+
+/* ─────────────────────────────────────────────────
+   SCROLL-TRIGGERED ANIMATIONS
+───────────────────────────────────────────────── */
+.anim {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .65s ease, transform .65s ease;
+}
+.anim.anim--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.anim--delay-1 { transition-delay: .1s; }
+.anim--delay-2 { transition-delay: .2s; }
+.anim--delay-3 { transition-delay: .3s; }
+.anim--delay-4 { transition-delay: .4s; }
+
+/* ─────────────────────────────────────────────────
+   TOPBAR — sticky, sem navbar
+───────────────────────────────────────────────── */
+.topbar {
+  background: linear-gradient(90deg, #B91C1C 0%, #DC2626 55%, #EF4444 100%);
+  color: #FFFFFF;
+  text-align: center;
+  padding: 18px 24px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  line-height: 1;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 16px rgba(185,28,28,.35);
+}
+
+.topbar__sep { color: rgba(255,255,255,.45); font-weight: 300; }
+
+.topbar__dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.7);
+  animation: blink 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+/* ─────────────────────────────────────────────────
+   HERO
+───────────────────────────────────────────────── */
+.hero {
+  /* Imagem posicionada à direita, tamanho contido — evita esticamento */
+  background:
+    url('freepik__crie-uma-imagem-com-base-na-referencia-mas-utiliza__82437.png')
+    no-repeat 72% 8% / auto 128%;
+  background-color: #F5FBFA;
+  border-radius: 0 0 40px 40px;
+  position: relative;
+  overflow: hidden;
+  min-height: 600px;
+}
+
+/* Degradê esquerda → direita: sólido branco no lado do texto,
+   desvanece para transparente onde o médico aparece */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    #FFFFFF        0%,
+    #FFFFFF        22%,
+    rgba(255,255,255,.95) 34%,
+    rgba(255,255,255,.7)  44%,
+    rgba(255,255,255,.25) 54%,
+    transparent    64%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Decorative blobs — hidden (photo bg replaces them) */
+.hero__blob { display: none; }
+
+.hero__grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 52px;
+  display: block;           /* single column — photo is the bg image */
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Left: content ── */
+.hero__content {
+  padding: 80px 0 96px;
+  max-width: 52%;           /* limita à metade esquerda — longe da foto */
+  padding-right: 32px;      /* respiro extra antes da área do médico */
+  animation: fadeInUp .8s ease both;
+}
+
+/* Logo + badge lado a lado */
+.hero__header-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(28,201,164,.12);
+  border: 1px solid rgba(28,201,164,.35);
+  border-radius: 100px;
+  padding: 7px 16px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--primary-deeper);
+  margin-bottom: 6px;       /* alinha com a base do MSK */
+  align-self: flex-end;
+}
+
+.hero__badge-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+  animation: blink 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.hero__event {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-style: italic;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  margin-bottom: 0;
+  animation: fadeInUp .9s .1s ease both;
+  flex-shrink: 0;
+}
+
+/* "MÊS DO" — caixa teal com texto branco, igual ao KEY VISUAL */
+.hero__event-sup {
+  display: inline-block;
+  background: var(--primary);
+  color: #FFFFFF;
+  font-size: 28px;
+  font-weight: 800;
+  font-style: italic;
+  letter-spacing: 0.04em;
+  padding: 4px 16px 6px;
+  border-radius: 5px;
+  margin-bottom: 6px;
+  line-height: 1.1;
+  text-shadow: none;
+}
+
+/* "MSK" — grande, teal, igual ao KEY VISUAL */
+.hero__event-main {
+  display: block;
+  font-size: 96px;
+  color: var(--primary);
+  line-height: .88;
+  text-shadow: none;
+}
+
+.hero__promise em {
+  color: var(--primary);
+  font-style: inherit;
+}
+
+.hero__promise {
+  font-size: 64px;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.1;
+  margin-bottom: 16px;
+  max-width: 600px;
+  text-shadow: none;
+  font-family: var(--font-display);
+  font-style: italic;
+  letter-spacing: -0.02em;
+}
+
+.hero__reinforcement {
+  font-size: 18px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  max-width: 500px;
+  margin-bottom: 32px;
+  font-weight: 400;
+}
+
+.hero__attention {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(28,201,164,.1);
+  border: 1px solid rgba(28,201,164,.28);
+  border-radius: 10px;
+  padding: 12px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.4;
+  margin-bottom: 40px;
+}
+
+.hero__cta-wrap {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: .04em;
+  padding: 0 36px;
+  height: 56px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+  animation: pulseGlow 2.4s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Brilho interno contínuo */
+.hero__cta::after {
+  content: '';
+  position: absolute;
+  top: -10%; left: -120%;
+  width: 55%; height: 120%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
+  transform: skewX(-20deg);
+  animation: btnShine 2.8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.hero__cta:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 44px rgba(28,201,164,.65);
+}
+
+.hero__cta svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+.hero__cta-sub {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+/* ── Right: photo — hidden (doctor is in the bg image) ── */
+.hero__photo-col { display: none; }
+
+.hero__photo-col::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 280px;
+  height: 360px;
+  background: radial-gradient(ellipse at 50% 80%, rgba(0,0,0,.18) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero__photo {
+  width: 320px;
+  height: auto;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  position: relative;
+  z-index: 1;
+
+  /* Blend photo edges into teal background */
+  -webkit-mask-image:
+    linear-gradient(to bottom,  transparent 0%,   black 8%,  black 80%, transparent 100%),
+    linear-gradient(to right,   transparent 0%,   black 12%, black 88%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to bottom,  transparent 0%,   black 8%,  black 80%, transparent 100%),
+    linear-gradient(to right,   transparent 0%,   black 12%, black 88%, transparent 100%);
+  mask-composite: intersect;
+
+  filter: brightness(1.05) contrast(1.05) saturate(0.95);
+}
+
+/* ─────────────────────────────────────────────────
+   LAYOUT UTILITIES
+───────────────────────────────────────────────── */
+.section { padding: 96px 0; }
+.section--white {
+  background: var(--bg-card);
+  /* Subtle teal glow in the top corner */
+  box-shadow: inset 0 1px 0 rgba(28,201,164,.08);
+}
+.section--gray  { background: var(--bg); }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 52px;
+}
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 14px;
+}
+
+.section-eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px; height: 1.5px;
+  background: var(--primary);
+  flex-shrink: 0;
+}
+
+.section-heading {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 4vw, 56px);
+  font-weight: 800;
+  font-style: italic;
+  color: var(--text-primary);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin-bottom: 14px;
+}
+
+.section-heading em { color: var(--primary); font-style: inherit; }
+
+.section-sub {
+  font-size: 17px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  max-width: 580px;
+  margin-bottom: 56px;
+}
+
+/* ─────────────────────────────────────────────────
+   COURSES SECTION
+───────────────────────────────────────────────── */
+.logos-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 52px;
+}
+
+.logo-tile {
+  background: var(--primary);
+  border-radius: 14px;
+  padding: 24px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 88px;
+  transition: transform .25s ease, box-shadow .25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.logo-tile::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  border: 1px solid transparent;
+  transition: border-color .25s;
+}
+
+.logo-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(28,201,164,.35);
+}
+
+.logo-tile:hover::after {
+  border-color: rgba(255,255,255,.5);
+}
+
+.logo-tile img {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+  transition: filter .25s;
+}
+
+.logo-tile:hover img { filter: brightness(1.15); }
+
+/* ── Accordion ── */
+.accordion {
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--bg-card);
+  box-shadow: var(--shadow-card);
+}
+
+.accordion-item { border-bottom: 1px solid var(--border-light); }
+.accordion-item:last-child { border-bottom: none; }
+
+.accordion-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 28px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  gap: 16px;
+  transition: background .2s;
+  position: relative;
+}
+
+.accordion-btn::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--primary);
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform .25s ease;
+  border-radius: 0 2px 2px 0;
+}
+
+.accordion-btn:hover { background: rgba(28,201,164,.03); }
+.accordion-btn.is-open { background: rgba(28,201,164,.05); }
+.accordion-btn.is-open::before { transform: scaleY(1); }
+
+.accordion-btn__left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.accordion-icon {
+  width: 46px; height: 46px;
+  border-radius: 11px;
+  background: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform .2s;
+}
+
+.accordion-btn:hover .accordion-icon { transform: scale(1.05); }
+
+.accordion-icon img {
+  height: 26px;
+  width: auto;
+  object-fit: contain;
+}
+
+.accordion-btn__name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3;
+  transition: color .2s;
+}
+
+.accordion-btn.is-open .accordion-btn__name { color: var(--primary-darker, #0D8C70); }
+
+.accordion-btn__sub {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  margin-top: 2px;
+  font-weight: 400;
+}
+
+.accordion-arrow {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform .3s ease, border-color .2s, background .2s, color .2s;
+  color: var(--text-tertiary);
+}
+
+.accordion-btn.is-open .accordion-arrow {
+  transform: rotate(180deg);
+  border-color: var(--primary);
+  background: var(--primary);
+  color: #FFFFFF;
+}
+
+.accordion-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .4s cubic-bezier(.4, 0, .2, 1);
+}
+
+.accordion-panel.is-open { max-height: 600px; }
+
+.accordion-body {
+  padding: 4px 28px 28px 90px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.accordion-body strong { color: var(--text-primary); font-weight: 700; }
+
+.courses-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 56px;
+}
+
+/* ─────────────────────────────────────────────────
+   SHARED BUTTON
+───────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: .04em;
+  padding: 0 52px;
+  height: 56px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+  box-shadow: var(--shadow-btn);
+  animation: pulseGlow 2.4s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Brilho interno contínuo */
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: -10%; left: -120%;
+  width: 55%; height: 120%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.32), transparent);
+  transform: skewX(-20deg);
+  animation: btnShine 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 8px 36px rgba(28,201,164,.65);
+}
+
+.btn-primary svg { width: 16px; height: 16px; }
+
+/* ─────────────────────────────────────────────────
+   BIO SECTION — fundo verde
+───────────────────────────────────────────────── */
+.section--bio {
+  background: linear-gradient(145deg, #0A6B55 0%, #0E8A6E 40%, #1CC9A4 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Blobs decorativos no fundo verde */
+.section--bio::before {
+  content: '';
+  position: absolute;
+  top: -120px; right: -120px;
+  width: 480px; height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.section--bio::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: 10%;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.bio-grid {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.bio-photo-wrap {
+  position: relative;
+}
+
+.bio-photo {
+  width: 100%;
+  height: 580px;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 22px;
+  display: block;
+  box-shadow: 0 16px 56px rgba(0,0,0,.14);
+  transition: transform .4s ease, box-shadow .4s ease;
+}
+
+.bio-photo-wrap:hover .bio-photo {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 64px rgba(0,0,0,.18);
+}
+
+.bio-badge {
+  position: absolute;
+  bottom: -22px; right: -22px;
+  background: rgba(255,255,255,.18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,.35);
+  border-radius: 14px;
+  padding: 16px 20px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.15);
+  transition: transform .3s ease;
+}
+
+.bio-photo-wrap:hover .bio-badge { transform: translateY(-2px); }
+
+.bio-badge__role {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.65);
+  margin-bottom: 4px;
+}
+
+.bio-badge__name {
+  font-size: 14px;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 3px;
+}
+
+.bio-badge__crm {
+  font-size: 11px;
+  color: rgba(255,255,255,.8);
+  font-weight: 600;
+}
+
+.bio__name {
+  font-family: var(--font-display);
+  font-size: clamp(38px, 4vw, 56px);
+  font-weight: 800;
+  font-style: italic;
+  color: #FFFFFF;
+  line-height: 1.05;
+  margin-bottom: 6px;
+}
+
+.bio__name em { color: rgba(255,255,255,.7); font-style: inherit; }
+
+.bio__crm {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.65);
+  margin-bottom: 28px;
+}
+
+.bio__text p {
+  font-size: 15px;
+  color: rgba(255,255,255,.85);
+  line-height: 1.78;
+  margin-bottom: 18px;
+}
+
+.bio__text p:last-child { margin-bottom: 0; }
+
+.bio__stats {
+  display: flex;
+  gap: 36px;
+  margin-top: 40px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255,255,255,.2);
+}
+
+.bio__stat {
+  background: rgba(255,255,255,.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 16px;
+  padding: 20px 28px;
+  text-align: center;
+  transition: transform .25s ease, background .25s ease;
+  flex: 1;
+}
+
+.bio__stat:hover {
+  transform: translateY(-3px);
+  background: rgba(255,255,255,.22);
+}
+
+.bio__stat-num {
+  font-family: var(--font-display);
+  font-size: 44px;
+  font-weight: 800;
+  font-style: italic;
+  color: #FFFFFF;
+  line-height: 1;
+  margin-bottom: 6px;
+  text-shadow: 0 2px 12px rgba(0,0,0,.15);
+}
+
+.bio__stat-label {
+  font-size: 12px;
+  color: rgba(255,255,255,.75);
+  font-weight: 500;
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ─────────────────────────────────────────────────
+   MARQUEE BANNER
+───────────────────────────────────────────────── */
+.marquee-banner {
+  background: linear-gradient(90deg, var(--primary-deeper) 0%, var(--primary) 55%, var(--primary-light) 100%);
+  padding: 12px 0;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Edge fade masks */
+.marquee-banner::before,
+.marquee-banner::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 120px;
+  z-index: 2;
+  pointer-events: none;
+}
+.marquee-banner::before {
+  left: 0;
+  background: linear-gradient(to right, var(--primary-deeper), transparent);
+}
+.marquee-banner::after {
+  right: 0;
+  background: linear-gradient(to left, var(--primary-light), transparent);
+}
+
+.marquee-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: marqueeScroll 28s linear infinite;
+  will-change: transform;
+}
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 40px;
+  flex-shrink: 0;
+  border-right: 1px solid rgba(255,255,255,.2);
+}
+
+.marquee-item img {
+  height: 30px;
+  width: auto;
+  filter: brightness(0) invert(1);
+  opacity: .88;
+  display: block;
+}
+
+/* ─────────────────────────────────────────────────
+   FRAUD WARNING
+───────────────────────────────────────────────── */
+.fraud-card {
+  background: linear-gradient(135deg, #0A6B55 0%, #0D8C70 45%, #1CC9A4 100%);
+  border-radius: 28px;
+  padding: 64px 72px;
+  position: relative;
+  overflow: hidden;
+}
+
+.fraud-card::before {
+  content: '';
+  position: absolute;
+  top: -120px; right: -120px;
+  width: 420px; height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.fraud-card::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: 20%;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.fraud-card__inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 64px;
+  align-items: center;
+}
+
+.fraud-card__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.75);
+  margin-bottom: 16px;
+}
+
+.fraud-card__title {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: 800;
+  font-style: italic;
+  color: #FFFFFF;
+  line-height: 1.05;
+  margin-bottom: 20px;
+}
+
+.fraud-card__text {
+  font-size: 15px;
+  color: rgba(255,255,255,.85);
+  line-height: 1.75;
+  max-width: 520px;
+}
+
+/* Phones — larger emphasis */
+.fraud-phones {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.fraud-phone {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(255,255,255,.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 14px;
+  padding: 18px 24px;
+  min-width: 280px;
+  transition: background .2s, border-color .2s, transform .2s, box-shadow .2s;
+}
+
+.fraud-phone:hover {
+  background: rgba(255,255,255,.22);
+  border-color: rgba(255,255,255,.5);
+  transform: translateX(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.1);
+}
+
+.fraud-phone__icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: rgba(255,255,255,.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #FFFFFF;
+  font-size: 18px;
+  transition: background .2s;
+}
+
+.fraud-phone:hover .fraud-phone__icon {
+  background: rgba(255,255,255,.35);
+}
+
+.fraud-phone__num {
+  font-size: 20px;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: .02em;
+  font-family: var(--font-display);
+  font-style: italic;
+}
+
+/* ─────────────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────────────── */
+.footer {
+  background: var(--bg-card);
+  border-top: 1px solid var(--border-light);
+  padding: 40px 52px;
+}
+
+.footer__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+/* Logo rodapé — mesma identidade visual da hero (KEY VISUAL) */
+.footer__logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-style: italic;
+}
+
+.footer__logo-sup {
+  display: inline-block;
+  background: var(--primary);
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  padding: 3px 10px 4px;
+  border-radius: 4px;
+  margin-bottom: 2px;
+  width: fit-content;
+}
+
+.footer__logo-main {
+  font-size: 42px;
+  color: var(--primary);
+  line-height: .88;
+  letter-spacing: -0.01em;
+}
+
+.footer__links {
+  display: flex;
+  gap: 28px;
+}
+
+.footer__links a {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  font-weight: 500;
+  transition: color .15s;
+}
+
+.footer__links a:hover { color: var(--primary); }
+
+.footer__copy { font-size: 12px; color: var(--text-tertiary); }
+
+/* ─────────────────────────────────────────────────
+   MODAL
+───────────────────────────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(10, 20, 16, .72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+}
+
+.modal-overlay.is-open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal-card {
+  background: var(--bg-card);
+  border-radius: 22px;
+  width: 100%;
+  max-width: 480px;
+  padding: 44px 40px;
+  position: relative;
+  box-shadow: 0 32px 80px rgba(0,0,0,.3);
+  transform: scale(.93) translateY(20px);
+  transition: transform .3s cubic-bezier(.34,1.4,.64,1), opacity .25s ease;
+  opacity: 0;
+  max-height: 92vh;
+  overflow-y: auto;
+}
+
+.modal-overlay.is-open .modal-card {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+.modal-close {
+  position: absolute;
+  top: 18px; right: 18px;
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: var(--bg-elevated);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-tertiary);
+  transition: background .15s, color .15s, border-color .15s, transform .15s;
+  flex-shrink: 0;
+}
+
+.modal-close:hover {
+  background: #FFEAEA;
+  border-color: #F5BCBC;
+  color: #CC4444;
+  transform: rotate(90deg);
+}
+
+.modal-close svg { width: 14px; height: 14px; }
+
+.modal__label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+.modal__title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+
+.modal__sub {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  line-height: 1.55;
+  margin-bottom: 28px;
+}
+
+.form-group { margin-bottom: 14px; }
+
+.form-group label {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 6px;
+}
+
+.form-group input {
+  width: 100%;
+  height: 48px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 0 16px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+  outline: none;
+  transition: border-color .15s, background .15s, box-shadow .15s;
+  -webkit-appearance: none;
+}
+
+.form-group input:focus {
+  border-color: var(--primary);
+  background: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(28,201,164,.12);
+}
+
+.form-group input::placeholder { color: var(--text-tertiary); }
+
+.form-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  height: 54px;
+  background: var(--primary);
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: .04em;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-top: 22px;
+  transition: background .2s, transform .2s, box-shadow .2s;
+  box-shadow: var(--shadow-btn);
+}
+
+.form-submit:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(28,201,164,.5);
+}
+
+.form-submit svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+.modal__note {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  text-align: center;
+  margin-top: 14px;
+  line-height: 1.5;
+}
+
+/* ─────────────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .hero__grid { padding: 0 32px; }
+  .hero__content { max-width: 500px; }
+  .bio-grid { grid-template-columns: 340px 1fr; gap: 48px; }
+  .bio-photo { height: 460px; }
+  .fraud-card { padding: 48px 44px; }
+  .fraud-card__inner { gap: 40px; }
+}
+
+@media (max-width: 768px) {
+  .navbar { padding: 0 24px; }
+  .navbar__tag { display: none; }
+
+  /* Hero mobile */
+  .hero {
+    background-size: auto 50% !important;
+    background-position: 80% bottom !important;
+    min-height: unset;
+    padding-bottom: 0;
+  }
+  .hero::before {
+    background: linear-gradient(
+      to bottom,
+      #FFFFFF        0%,
+      #FFFFFF        50%,
+      rgba(255,255,255,.92) 65%,
+      rgba(255,255,255,.55) 80%,
+      rgba(255,255,255,.1)  92%,
+      transparent    100%
+    );
+  }
+  .hero__grid { padding: 0 24px; }
+  .hero__content {
+    padding: 48px 0 240px;
+    max-width: 100%;
+    padding-right: 0;
+  }
+  .hero__header-row {
+    gap: 10px;
+    margin-bottom: 20px;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .hero__badge {
+    font-size: 9px;
+    align-self: flex-start;
+    margin-bottom: 0;
+  }
+  .hero__promise { font-size: 36px; max-width: 100%; }
+  .hero__reinforcement { font-size: 16px; max-width: 100%; }
+  .hero__attention { width: 100%; }
+  .hero__cta-row { flex-direction: column; align-items: stretch; }
+  .hero__cta-row .btn { width: 100%; justify-content: center; }
+
+  .logos-row { grid-template-columns: repeat(2, 1fr); }
+
+  .bio-grid { grid-template-columns: 1fr; gap: 48px; }
+  .bio-photo { height: 380px; }
+  .bio-badge { bottom: -16px; right: -8px; }
+  .bio__stats { gap: 20px; flex-wrap: wrap; }
+
+  .fraud-card { padding: 40px 28px; border-radius: 20px; }
+  .fraud-card__inner { grid-template-columns: 1fr; gap: 32px; }
+  .fraud-phone { min-width: unset; }
+  .fraud-phone__num { font-size: 17px; }
+
+  .container { padding: 0 24px; }
+  .footer { padding: 32px 24px; }
+  .footer__inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .footer__links { flex-wrap: wrap; gap: 16px; }
+
+  .modal-card { padding: 36px 28px; }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    background-size: auto 42% !important;
+  }
+  .hero__content { padding-bottom: 200px; }
+  .hero__event-main { font-size: 64px; }
+  .hero__promise { font-size: 30px; }
+  .logos-row { gap: 8px; }
+  .accordion-body { padding-left: 28px; }
+  .fraud-card__title { font-size: 36px; }
+  .fraud-phone__num { font-size: 16px; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════
+     TOPBAR (única barra de navegação)
+════════════════════════════════════════════ -->
+<div class="topbar" id="topbar">
+  <span class="topbar__dot"></span>
+  EXCLUSIVO PARA MÉDICOS
+  <span class="topbar__sep">|</span>
+  03/05 ÀS 6H
+  <span class="topbar__dot"></span>
+</div>
+
+<!-- ════════════════════════════════════════════
+     DOBRA 01 — HERO
+════════════════════════════════════════════ -->
+<section class="hero">
+  <span class="hero__blob hero__blob--1"></span>
+  <span class="hero__blob hero__blob--2"></span>
+  <span class="hero__blob hero__blob--3"></span>
+
+  <div class="hero__grid">
+
+    <!-- LEFT: Content -->
+    <div class="hero__content">
+
+      <!-- Logo + badge na mesma linha -->
+      <div class="hero__header-row">
+        <div class="hero__event">
+          <span class="hero__event-sup">MÊS DO</span>
+          <span class="hero__event-main">MSK</span>
+        </div>
+        <div class="hero__badge">
+          <span class="hero__badge-dot"></span>
+          Aniversário · Dr. Mateus Queiroz
+        </div>
+      </div>
+
+      <p class="hero__promise">
+        Garanta acesso a<br>
+        todos os meus cursos<br>
+        de <em>forma vitalícia!</em>
+      </p>
+
+      <p class="hero__reinforcement">
+        Médico, tenha o melhor do Ultrassom Musculoesquelético em um único combo de cursos, pelo menor preço. Um único investimento, acesso para sempre!
+      </p>
+
+      <div class="hero__attention">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M8 1.5L1 14h14L8 1.5Z" stroke="#0D8C70" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M8 6v3.5M8 11.5v.5" stroke="#0D8C70" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        Atenção: Alunos terão um desconto especial.
+      </div>
+
+      <div class="hero__cta-wrap">
+        <button class="hero__cta" onclick="openModal()" type="button">
+          QUERO ENTRAR NA LISTA
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </button>
+        <span class="hero__cta-sub">Inscrição gratuita · Oferta abre em 03/05</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: Dr. Mateus photo (ambient) -->
+    <div class="hero__photo-col">
+      <img
+        class="hero__photo"
+        src="MSK013.jpg"
+        alt="Dr. Mateus Queiroz"
+      />
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     MARQUEE — LOGOS DOS PRODUTOS
+════════════════════════════════════════════ -->
+<div class="marquee-banner" aria-hidden="true">
+  <div class="marquee-track">
+    <!-- Set 1 -->
+    <div class="marquee-item"><img src="Logo - AMSK.png"  alt="Academia MSK" /></div>
+    <div class="marquee-item"><img src="Logo - PHD.png"   alt="PHD" /></div>
+    <div class="marquee-item"><img src="Logo - USR.png"   alt="USR" /></div>
+    <div class="marquee-item"><img src="Logo - Alvos.png" alt="Alvos MSK" /></div>
+    <!-- Set 2 -->
+    <div class="marquee-item"><img src="Logo - AMSK.png"  alt="Academia MSK" /></div>
+    <div class="marquee-item"><img src="Logo - PHD.png"   alt="PHD" /></div>
+    <div class="marquee-item"><img src="Logo - USR.png"   alt="USR" /></div>
+    <div class="marquee-item"><img src="Logo - Alvos.png" alt="Alvos MSK" /></div>
+    <!-- Set 3 -->
+    <div class="marquee-item"><img src="Logo - AMSK.png"  alt="Academia MSK" /></div>
+    <div class="marquee-item"><img src="Logo - PHD.png"   alt="PHD" /></div>
+    <div class="marquee-item"><img src="Logo - USR.png"   alt="USR" /></div>
+    <div class="marquee-item"><img src="Logo - Alvos.png" alt="Alvos MSK" /></div>
+    <!-- Set 4 (espelho exato dos 3 sets acima — o -50% retorna ao início sem salto) -->
+    <div class="marquee-item"><img src="Logo - AMSK.png"  alt="Academia MSK" /></div>
+    <div class="marquee-item"><img src="Logo - PHD.png"   alt="PHD" /></div>
+    <div class="marquee-item"><img src="Logo - USR.png"   alt="USR" /></div>
+    <div class="marquee-item"><img src="Logo - Alvos.png" alt="Alvos MSK" /></div>
+    <!-- Set 5 -->
+    <div class="marquee-item"><img src="Logo - AMSK.png"  alt="Academia MSK" /></div>
+    <div class="marquee-item"><img src="Logo - PHD.png"   alt="PHD" /></div>
+    <div class="marquee-item"><img src="Logo - USR.png"   alt="USR" /></div>
+    <div class="marquee-item"><img src="Logo - Alvos.png" alt="Alvos MSK" /></div>
+    <!-- Set 6 -->
+    <div class="marquee-item"><img src="Logo - AMSK.png"  alt="Academia MSK" /></div>
+    <div class="marquee-item"><img src="Logo - PHD.png"   alt="PHD" /></div>
+    <div class="marquee-item"><img src="Logo - USR.png"   alt="USR" /></div>
+    <div class="marquee-item"><img src="Logo - Alvos.png" alt="Alvos MSK" /></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     DOBRA 02 — CURSOS
+════════════════════════════════════════════ -->
+<section class="section section--white">
+  <div class="container">
+
+    <div style="text-align:center;">
+      <p class="section-eyebrow anim">O que está incluído</p>
+      <h2 class="section-heading anim anim--delay-1">Nunca mais gaste <em>nenhum<br>centavo</em> com meus cursos online.</h2>
+      <p class="section-sub anim anim--delay-2" style="margin-left:auto;margin-right:auto;">Veja os cursos que você terá acesso nesta oferta vitalícia:</p>
+    </div>
+
+    <div class="logos-row">
+      <div class="logo-tile anim anim--delay-1">
+        <img src="Logo - AMSK.png" alt="Academia MSK" />
+      </div>
+      <div class="logo-tile anim anim--delay-2">
+        <img src="Logo - PHD.png" alt="PHD — Parede e Hérnias Descomplicadas" />
+      </div>
+      <div class="logo-tile anim anim--delay-3">
+        <img src="Logo - USR.png" alt="USR — Ultrassom em Reumatologia" />
+      </div>
+      <div class="logo-tile anim anim--delay-4">
+        <img src="Logo - Alvos.png" alt="Alvos MSK" />
+      </div>
+    </div>
+
+    <div class="accordion anim">
+
+      <div class="accordion-item">
+        <button class="accordion-btn" type="button" aria-expanded="false">
+          <div class="accordion-btn__left">
+            <div class="accordion-icon"><img src="Logo - AMSK.png" alt="AMSK" /></div>
+            <div>
+              <div class="accordion-btn__name">Academia MSK</div>
+              <div class="accordion-btn__sub">12 cursos + 2 complementares</div>
+            </div>
+          </div>
+          <span class="accordion-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l4 4 4-4"/></svg>
+          </span>
+        </button>
+        <div class="accordion-panel" role="region">
+          <div class="accordion-body">
+            A plataforma para médicos que buscam uma abordagem personalizada e sistematizada em Ultrassom Musculoesquelético. São 12 cursos focados em Anatomia e Sonoanatomia, Sistematização do Exame, Prática, Patologia e Laudo. Mais dois cursos complementares: USD — Ultrassom Descomplicado e SMSK — Introdução ao Sistema MSK.<br><br>
+            <strong>Curso de Extensão Universitária pela Faculdade Brasília com certificação reconhecida pelo MEC.</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-btn" type="button" aria-expanded="false">
+          <div class="accordion-btn__left">
+            <div class="accordion-icon"><img src="Logo - PHD.png" alt="PHD" /></div>
+            <div>
+              <div class="accordion-btn__name">PHD — Parede e Hérnias Descomplicadas</div>
+              <div class="accordion-btn__sub">Ultrassonografia da parede abdominal</div>
+            </div>
+          </div>
+          <span class="accordion-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l4 4 4-4"/></svg>
+          </span>
+        </button>
+        <div class="accordion-panel" role="region">
+          <div class="accordion-body">
+            O curso que ensina médicos a dominar a ultrassonografia da parede abdominal e região inguinal de forma descomplicada, e o melhor: praticando do seu próprio serviço.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-btn" type="button" aria-expanded="false">
+          <div class="accordion-btn__left">
+            <div class="accordion-icon"><img src="Logo - USR.png" alt="USR" /></div>
+            <div>
+              <div class="accordion-btn__name">USR — Ultrassom em Reumatologia</div>
+              <div class="accordion-btn__sub">Foco em anatomia, prática e patologias</div>
+            </div>
+          </div>
+          <span class="accordion-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l4 4 4-4"/></svg>
+          </span>
+        </button>
+        <div class="accordion-panel" role="region">
+          <div class="accordion-body">
+            Curso que ensina médicos a realizar exames em Ultrassonografia Reumatológica com foco em Anatomia e Sonoanatomia, realização prática dos exames e patologias.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-btn" type="button" aria-expanded="false">
+          <div class="accordion-btn__left">
+            <div class="accordion-icon"><img src="Logo - Alvos.png" alt="Alvos MSK" /></div>
+            <div>
+              <div class="accordion-btn__name">Alvos MSK — Identificação e Pontos de Entrada</div>
+              <div class="accordion-btn__sub">Procedimentos guiados por ultrassom</div>
+            </div>
+          </div>
+          <span class="accordion-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l4 4 4-4"/></svg>
+          </span>
+        </button>
+        <div class="accordion-panel" role="region">
+          <div class="accordion-body">
+            Aprenda a localizar os alvos anatômicos e definir os pontos de entrada para procedimentos musculoesqueléticos guiados por ultrassom.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="courses-cta anim">
+      <button class="btn-primary" onclick="openModal()" type="button">
+        QUERO PARTICIPAR
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     DOBRA 03 — BIO
+════════════════════════════════════════════ -->
+<section class="section section--bio">
+  <div class="container">
+    <div class="bio-grid">
+
+      <div class="bio-photo-wrap anim">
+        <img class="bio-photo" src="MSK029.jpg" alt="Dr. Mateus Queiroz" />
+        <div class="bio-badge">
+          <div class="bio-badge__role">Radiologista</div>
+          <div class="bio-badge__name">Dr. Mateus Queiroz</div>
+          <div class="bio-badge__crm">CRM 146719-SP · RQE 59021</div>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-eyebrow anim" style="color:rgba(255,255,255,.75);">Quem vai te ensinar</p>
+        <h2 class="bio__name anim anim--delay-1">Dr. Mateus <em>Queiroz</em></h2>
+        <p class="bio__crm anim anim--delay-1">CRM 146719-SP · RQE 59021</p>
+
+        <div class="bio__text anim anim--delay-2">
+          <p>Médico especialista em radiologia e diagnóstico por imagem, subespecializado em imagem do sistema musculoesquelético, atuando na área desde 2013.</p>
+          <p>Apaixonado pelo ensino, criou o Curso Musculoesquelético Descomplicado (MSKD) — uma metodologia que já transformou a prática de mais de 1.500 colegas, ensinando ultrassonografia musculoesquelética de forma didática e simplificada.</p>
+          <p>Atualmente é coordenador da Pós-Graduação Lato Sensu em Ultrassonografia Musculoesquelética do CETRUS Recife e membro titular do Colégio Brasileiro de Radiologia.</p>
+        </div>
+
+        <div class="bio__stats anim anim--delay-3">
+          <div class="bio__stat">
+            <div class="bio__stat-num counter" data-prefix="+" data-target="1500" data-from="0" data-duration="1800">+0</div>
+            <div class="bio__stat-label">médicos<br>treinados</div>
+          </div>
+          <div class="bio__stat">
+            <div class="bio__stat-num counter" data-prefix="" data-target="2013" data-from="1990" data-duration="1400">1990</div>
+            <div class="bio__stat-label">atuando em<br>ultrassom MSK</div>
+          </div>
+          <div class="bio__stat">
+            <div class="bio__stat-num counter" data-prefix="" data-suffix="+" data-target="4" data-from="0" data-duration="900">0+</div>
+            <div class="bio__stat-label">cursos<br>online</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     DOBRA 04 — AVISO DE GOLPES
+════════════════════════════════════════════ -->
+<section class="section section--gray">
+  <div class="container">
+    <div class="fraud-card anim">
+      <div class="fraud-card__inner">
+
+        <div>
+          <p class="fraud-card__eyebrow">⚠ Atenção</p>
+          <h3 class="fraud-card__title">Cuidado<br>com Golpes</h3>
+          <p class="fraud-card__text">
+            Confie apenas nos números da minha equipe listados a seguir. Em hipótese alguma faremos sorteios ou solicitaremos pagamentos antecipados.<br><br>
+            Na dúvida, anote nossos números e verifique antes de responder qualquer mensagem suspeita.
+          </p>
+        </div>
+
+        <div class="fraud-phones">
+          <div class="fraud-phone">
+            <div class="fraud-phone__icon">📱</div>
+            <span class="fraud-phone__num">+55 (12) 99757-7675</span>
+          </div>
+          <div class="fraud-phone">
+            <div class="fraud-phone__icon">📱</div>
+            <span class="fraud-phone__num">+55 (19) 98269-7360</span>
+          </div>
+          <div class="fraud-phone">
+            <div class="fraud-phone__icon">📱</div>
+            <span class="fraud-phone__num">+55 (11) 94699-7394</span>
+          </div>
+          <div class="fraud-phone">
+            <div class="fraud-phone__icon">📱</div>
+            <span class="fraud-phone__num">+55 (11) 94356-2101</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__logo">
+      <span class="footer__logo-sup">MÊS DO</span>
+      <span class="footer__logo-main">MSK</span>
+    </div>
+    <div class="footer__links">
+      <a href="#">Política de Privacidade</a>
+      <a href="#">Termos de Uso</a>
+      <a href="#">Suporte</a>
+    </div>
+    <p class="footer__copy">© 2026 Dr. Mateus Queiroz. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════════
+     MODAL — FORMULÁRIO
+════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeModal()" type="button" aria-label="Fechar">
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 1l12 12M13 1L1 13"/></svg>
+    </button>
+
+    <p class="modal__label">Inscrição gratuita</p>
+    <h2 class="modal__title" id="modal-title">Garanta seu lugar na lista e receba a oferta especial em 03 de Maio às 6h</h2>
+    <p class="modal__sub">Preencha os dados abaixo para entrar na lista de interessados.</p>
+
+    <form action="#" method="post" novalidate>
+      <div class="form-group">
+        <label for="f-nome">Seu nome</label>
+        <input type="text" id="f-nome" name="nome" placeholder="Ex.: João Silva" autocomplete="name" />
+      </div>
+      <div class="form-group">
+        <label for="f-email">Seu melhor e-mail</label>
+        <input type="email" id="f-email" name="email" placeholder="email@exemplo.com.br" autocomplete="email" />
+      </div>
+      <div class="form-group">
+        <label for="f-whatsapp">Seu DDD + WhatsApp</label>
+        <input type="tel" id="f-whatsapp" name="whatsapp" placeholder="(11) 99999-9999" autocomplete="tel" />
+      </div>
+      <div class="form-group">
+        <label for="f-crm">Seu CRM</label>
+        <input type="text" id="f-crm" name="crm" placeholder="Ex.: 123456-SP" />
+      </div>
+      <button type="submit" class="form-submit">
+        QUERO ENTRAR NA LISTA
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </button>
+    </form>
+
+    <p class="modal__note">🔒 Seus dados estão seguros. Sem spam.</p>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════ -->
+<script>
+(function () {
+
+  /* ── Modal ── */
+  var modal    = document.getElementById('modal');
+  var firstInput = document.getElementById('f-nome');
+  var scrollY  = 0;
+
+  window.openModal = function () {
+    scrollY = window.scrollY;
+    document.body.style.overflow = 'hidden';
+    modal.classList.add('is-open');
+    setTimeout(function () { if (firstInput) firstInput.focus(); }, 320);
+  };
+
+  window.closeModal = function () {
+    modal.classList.remove('is-open');
+    document.body.style.overflow = '';
+    window.scrollTo(0, scrollY);
+  };
+
+  /* Close on overlay click */
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) closeModal();
+  });
+
+  /* Close on Escape */
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+  });
+
+  /* ── Accordion ── */
+  document.querySelectorAll('.accordion-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var panel  = this.nextElementSibling;
+      var isOpen = this.classList.contains('is-open');
+
+      document.querySelectorAll('.accordion-btn.is-open').forEach(function (b) {
+        b.classList.remove('is-open');
+        b.setAttribute('aria-expanded', 'false');
+        b.nextElementSibling.classList.remove('is-open');
+      });
+
+      if (!isOpen) {
+        this.classList.add('is-open');
+        this.setAttribute('aria-expanded', 'true');
+        panel.classList.add('is-open');
+      }
+    });
+  });
+
+  /* ── Topbar shadow on scroll ── */
+  var topbar = document.getElementById('topbar');
+  window.addEventListener('scroll', function () {
+    if (topbar) topbar.style.boxShadow = window.scrollY > 10
+      ? '0 4px 20px rgba(185,28,28,.5)'
+      : '0 2px 16px rgba(185,28,28,.35)';
+  }, { passive: true });
+
+  /* ── Scroll-triggered animations ── */
+  var animEls = document.querySelectorAll('.anim');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('anim--visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    animEls.forEach(function (el) { io.observe(el); });
+  } else {
+    animEls.forEach(function (el) { el.classList.add('anim--visible'); });
+  }
+
+  /* ── Counter animation (bio stats) ── */
+  function animateCounter(el) {
+    var from     = parseInt(el.dataset.from, 10)     || 0;
+    var target   = parseInt(el.dataset.target, 10)   || 0;
+    var duration = parseInt(el.dataset.duration, 10) || 1200;
+    var prefix   = el.dataset.prefix  || '';
+    var suffix   = el.dataset.suffix  || '';
+    var startTime = null;
+
+    function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+
+    function step(timestamp) {
+      if (!startTime) startTime = timestamp;
+      var progress = Math.min((timestamp - startTime) / duration, 1);
+      var value    = Math.round(from + (target - from) * easeOut(progress));
+      el.textContent = prefix + value.toLocaleString('pt-BR') + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  var counterEls = document.querySelectorAll('.counter');
+  if ('IntersectionObserver' in window) {
+    var counterIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          counterIO.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    counterEls.forEach(function (el) { counterIO.observe(el); });
+  } else {
+    counterEls.forEach(function (el) {
+      el.textContent = (el.dataset.prefix || '') + el.dataset.target + (el.dataset.suffix || '');
+    });
+  }
+
+  /* ── WhatsApp mask ── */
+  var wpp = document.getElementById('f-whatsapp');
+  if (wpp) {
+    wpp.addEventListener('input', function () {
+      var v = this.value.replace(/\D/g, '').slice(0, 11);
+      if      (v.length > 6) v = '(' + v.slice(0,2) + ') ' + v.slice(2,7) + '-' + v.slice(7);
+      else if (v.length > 2) v = '(' + v.slice(0,2) + ') ' + v.slice(2);
+      else if (v.length > 0) v = '(' + v;
+      this.value = v;
+    });
+  }
+
+})();
+</script>
+
+</body>
+</html>
